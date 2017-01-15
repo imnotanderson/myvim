@@ -4,6 +4,9 @@ filetype off                  " required
 " show line number
 set nu!
 
+"tagbar
+nmap <F8> :TagbarToggle<CR>
+
 "ctrlp
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
@@ -65,6 +68,7 @@ Plugin 'file:///home/gmarik/path/to/plugin'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'ascenator/L9', {'name': 'newL9'}
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'majutsushi/tagbar'
 call vundle#end()
 
 filetype plugin indent on 
