@@ -1,11 +1,31 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+"zoom window
+function! Zoom ()
+	 " check if is the zoomed state (tabnumber > 1 && window == 1)
+	 if tabpagenr('$') > 1 && tabpagewinnr(tabpagenr(), '$') == 1
+		let l:cur_winview = winsaveview()
+		let l:cur_bufname = bufname('')
+		tabclose
+		if l:cur_bufname == bufname('')
+			call winrestview(cur_winview)
+		endif
+	else
+		tab split
+	endif
+endfunction
+nmap <leader>z :call Zoom()<CR>
+
 " show line number
 set nu!
 
 "tagbar
 nmap <F8> :TagbarToggle<CR>
+
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
 
 "ctrlp
 set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -55,6 +75,7 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
+Plugin 'EasyGrep'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
